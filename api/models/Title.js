@@ -9,7 +9,10 @@ module.exports = {
 
   attributes: {
   	text: 'STRING',
-  	count: 'INTEGER',
+  	count: {
+  		type:'INTEGER',
+  		defaultsTo:0
+  	},
   	single:{
   		model: 'single'
   	}
