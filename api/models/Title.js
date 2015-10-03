@@ -13,8 +13,8 @@ module.exports = {
   		type:'INTEGER',
   		defaultsTo:0
   	},
-  	single:{
-  		model: 'single'
+  	item:{
+  		model: 'item'
   	}
   }
 };

@@ -4,6 +4,7 @@ window.TA = window.TA || {};
 
 $(document).ready(function(){
 	// alert("hi");
+	/*
 	$.get('/single/1',function(result){
 		console.log(result);
 		var $img = $('<img width="100%"/>');
@@ -20,7 +21,18 @@ $(document).ready(function(){
 
 
 	},'json');
-	
+	*/
+	var item = JSON.parse(window.DATA);
+	var $img = $('<img width="100%"/>');
+		$img.attr('src',item.imageSrc);
+		$img.appendTo('.single-image');
+
+		var $list = $('<ul id="title-list" class="list-group"></ul>');
+		for(var i in item.titles){
+			var titleObj = item.titles[i];
+			$list.prepend(makeTitleHtml(titleObj));
+		}
+		$('.single-list').append($list);
 
 	console.log(window.TA.titleList);
 
@@ -32,7 +44,7 @@ $(document).ready(function(){
 
 		$.post('/title',{
 			'text':title,
-			'single':1
+			'item':item.id
 		},function(result){
 			console.log(result);
 			$('#title-list').prepend(makeTitleHtml({id: result.id, text:title,count:0}));

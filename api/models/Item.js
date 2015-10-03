@@ -11,7 +11,7 @@ module.exports = {
   	imageSrc: 'STRING',
   	titles:{
   		collection: 'title',
-  		via: 'single'
+  		via: 'item'
   	}
   }
 };
