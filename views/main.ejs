@@ -28,23 +28,8 @@
   </div>
 </nav>
 <div class="container">
-  <div class="single col-md-6 col-md-offset-3">
-    <div class="single-image">
-      
-    </div>
-    <div class="single-input">
-      <form id="title-form" action="/submit_title" method="post">
-        <div class="input-group">
-          <input class="form-control" type="text" name="title"/>
-          <span class="input-group-btn">
-          <button class="btn btn-primary" type="submit">등록</button>
-          </span>
-        </div>
-      </form>
-    </div>
-    <div class="single-list">
-      
-    </div>
+  <div class="item-list">
+    
   </div>
 </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -52,9 +37,9 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     
-    <script src="/js/item.js"></script>
+    <script src="/js/main.js"></script>
     <script type="text/javascript">
-      window.DATA = '<%- item %>';
+      window.DATA = '<%- items %>';
     </script>
   </body>
 </html>

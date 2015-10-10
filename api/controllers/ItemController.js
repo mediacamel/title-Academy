@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+	
 	view: function(req, res){
 		
 		var itemId = req.param('id');

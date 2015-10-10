@@ -1,28 +1,14 @@
-window.TA = window.TA || {};
-
-
-
 $(document).ready(function(){
-	// alert("hi");
+	
+	var items = JSON.parse(window.DATA);
+	var $list = $('.item-list');
+	for(var i in items){
+		var item = items[i];
+		
+		var itemHtml = makeItemHtml(item);
+		$list.append(itemHtml);
+	}
 	/*
-	$.get('/single/1',function(result){
-		console.log(result);
-		var $img = $('<img width="100%"/>');
-		$img.attr('src',result.imageSrc);
-		$img.appendTo('.single-image');
-
-		var $list = $('<ul id="title-list" class="list-group"></ul>');
-		for(var i in result.titles){
-			var titleObj = result.titles[i];
-			$list.prepend(makeTitleHtml(titleObj));
-		}
-		$('.single-list').append($list);
-
-
-
-	},'json');
-	*/
-	var item = JSON.parse(window.DATA);
 	var $img = $('<img width="100%"/>');
 		$img.attr('src',item.imageSrc);
 		$img.appendTo('.single-image');
@@ -34,42 +20,22 @@ $(document).ready(function(){
 		}
 		$('.single-list').append($list);
 
-	console.log(window.TA.titleList);
-
-	$("#title-form").on("submit",function(event){
-		event.preventDefault();
-		// console.log(event.target);
-		var $form = $(event.target);
-		var title = $form.find('input[name="title"]').val();
-
-		$.post('/title',{
-			'text':title,
-			'item':item.id
-		},function(result){
-			console.log(result);
-			$('#title-list').prepend(makeTitleHtml({id: result.id, text:title,count:0}));
-			$form.find('input[name="title"]').val('');
-		})
-		// console.log($form[0]);
-		// var titleHtml = '<li class="list-group-item"><span class="item-title">제목학원은 제목학원</span><div class=pull-right>          <span class="item-star" style="cursor:pointer">          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>        </span>          <span class="item-count">123</span>        </div>        </li>';
-		
-
-		
-		
-	})
+	console.log(window.TA.titleList);	
+	*/	
 })
 
-function makeTitleHtml(titleObj){
-	
 
-	var titleHtml = '<li class="list-group-item" data-titleId="'+(titleObj.id ? titleObj.id : -1)+'">';
-        titleHtml += '<span class="item-title">'+titleObj.text+'</span>';
-        titleHtml += '<div class="pull-right">';
-        titleHtml += '<span class="item-star" style="cursor:pointer">';
-        titleHtml += '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
-        titleHtml += '</span>';
-        titleHtml += '<span class="item-count">'+titleObj.count+'</span>';
-        titleHtml += '</div>';
-        titleHtml += '</li>';
-    return titleHtml;
+function makeItemHtml(itemObj){
+	
+	var itemHtml = '';
+itemHtml += '<div class="col-md-4 col-sm-6 col-xs-12">';
+itemHtml += '<a href="/item/'+ itemObj.id +'" title="">';
+itemHtml += '<div class="panel panel-default">';
+itemHtml += '<div class="panel-body">';
+itemHtml += '<img src="'+ itemObj.imageSrc +'" class="img-responsive">';
+itemHtml += '<ul id="title-list" class="list-group"><li class="list-group-item"><span class="item-title">' + itemObj.titles[0].text + '</span><div class="pull-right"><span class="item-star"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></span><span class="item-count">'+itemObj.titles[0].count+'</span></div></li></ul>';
+itemHtml += '</div>';
+itemHtml += '</a>';
+itemHtml += '</div>';
+    return itemHtml;
 }

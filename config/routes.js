@@ -32,10 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
-  '/item/:id': 'ItemController.view'
+  '/': "MainController.view",
+  '/item/:id': 'ItemController.view',
+  'POST /title/:id' : 'TitleController.vote'
 
   /***************************************************************************
   *                                                                          *
