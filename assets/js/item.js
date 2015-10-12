@@ -51,8 +51,14 @@ $(document).ready(function(){
 		// console.log($form[0]);
 		// var titleHtml = '<li class="list-group-item"><span class="item-title">제목학원은 제목학원</span><div class=pull-right>          <span class="item-star" style="cursor:pointer">          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>        </span>          <span class="item-count">123</span>        </div>        </li>';
 		
+	})
 
-		
+	$(".item-star").click(function(){
+		var $li = $(this).offsetParent().data().titleid;
+		//console.log($li);
+		$.post('/title/'+$li,function(){
+			location.reload();	
+		});
 		
 	})
 })
