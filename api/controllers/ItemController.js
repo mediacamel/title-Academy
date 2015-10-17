@@ -6,15 +6,40 @@
  */
 
 module.exports = {
+
+	add: function(req, res) {
+		var imageSrc = req.body.imageSrc;
+		var firstTitle = req.body.firstTitle;
+
+		if(typeof imageSrc === 'undefined') return res.badRequest();
+		if(typeof firstTitle === 'undefined') return res.badRequest();
+
+		Item.create({
+			imageSrc:imageSrc
+		})
+		.then(function(item) {
+			var itemUrl = '/item/' + item.id;
+			Title.create({
+				text:firstTitle,
+				item:item.id
+			})
+			.then(function(title) {
+				return res.redirect(itemUrl);
+			});
+		})
+		.catch(function(err) {
+			return res.serverError(err);
+		})
+		
+	},
 	
 	view: function(req, res){
 		
 		var itemId = req.param('id');
-		Item.findOne({id:itemId}).populate('titles')
+		Item.findOne({id:itemId}).populate('titles', {sort:'count DESC'})
 			.then(function(item){
 				
 				return res.view('item',{
-					layout:'',
 					item:JSON.stringify(item)
 				});
 			})

@@ -8,11 +8,10 @@
 module.exports = {
 	view: function(req, res){
 
-		Item.find().populate('titles',{limit:1})
+		Item.find().populate('titles',{limit:1, sort:'count DESC'})
 			.then(function(items){
 				
 				return res.view('main',{
-					layout:'',
 					items:JSON.stringify(items)
 				});
 			})
