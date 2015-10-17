@@ -28,7 +28,7 @@ $(document).ready(function(){
 		var $list = $('<ul id="title-list" class="list-group"></ul>');
 		for(var i in item.titles){
 			var titleObj = item.titles[i];
-			$list.prepend(makeTitleHtml(titleObj));
+			$list.append(makeTitleHtml(titleObj));
 		}
 		$('.single-list').append($list);
 
@@ -54,10 +54,14 @@ $(document).ready(function(){
 	})
 
 	$(".item-star").click(function(){
-		var $li = $(this).offsetParent().data().titleid;
+		//var self = this;
+		var $li = $(this).offsetParent();
+
 		//console.log($li);
-		$.post('/title/'+$li,function(){
-			location.reload();	
+		$.post('/title/'+$li.data().titleid,function(response){
+			console.log(response);
+			//location.reload();
+			$li.find('.item-count').text(response.count);
 		});
 		
 	})

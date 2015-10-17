@@ -34,7 +34,11 @@ module.exports.routes = {
 
   '/': "MainController.view",
   '/item/:id': 'ItemController.view',
-  'POST /title/:id' : 'TitleController.vote'
+  'POST /title/:id' : 'TitleController.vote',
+  'GET /new': {
+    view: 'add'
+  },
+  'POST /new': 'ItemController.add'
 
   /***************************************************************************
   *                                                                          *
