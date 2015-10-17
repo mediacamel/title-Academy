@@ -54,13 +54,11 @@ $(document).ready(function(){
 	})
 
 	$(".item-star").click(function(){
-		//var self = this;
+
 		var $li = $(this).offsetParent();
 
-		//console.log($li);
 		$.post('/title/'+$li.data().titleid,function(response){
-			console.log(response);
-			//location.reload();
+
 			$li.find('.item-count').text(response.count);
 		});
 		

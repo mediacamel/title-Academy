@@ -6,8 +6,9 @@
  */
 
 module.exports = {
-	add: function(req, res){
-		//console.log(req.body);
+
+	add: function(req, res) {
+
 		var imageSrc = req.body.imageSrc;
 		var firstTitle = req.body.firstTitle;
 
@@ -17,18 +18,19 @@ module.exports = {
 		Item.create({
 			imageSrc:imageSrc
 		})
-		.then(function(item){
-			var itemUrl = '/item/'+item.id;
+		.then(function(item) {
+			var itemUrl = '/item/' + item.id;
+
 			Title.create({
 				text:firstTitle,
 				item:item.id
 			})
-			.then(function(title){
-				return res.redirect(itemUrl);	
+			.then(function(title) {
+				return res.redirect(itemUrl);
 			});
-			
 		})
-		.catch(function(err){
+		.catch(function(err) {
+
 			return res.serverError(err);
 		})
 		
@@ -37,7 +39,8 @@ module.exports = {
 	view: function(req, res){
 		
 		var itemId = req.param('id');
-		Item.findOne({id:itemId}).populate('titles',{sort:'count DESC'})
+		Item.findOne({id:itemId}).populate('titles', {sort:'count DESC'})
+
 			.then(function(item){
 				
 				return res.view('item',{

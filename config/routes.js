@@ -38,7 +38,7 @@ module.exports.routes = {
   'GET /new': {
     view: 'add'
   },
-  'POST /new': 'ItemController.add'
+  'POST /new': 'ItemController.add',
 
   /***************************************************************************
   *                                                                          *
