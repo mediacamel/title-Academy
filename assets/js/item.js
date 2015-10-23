@@ -53,10 +53,10 @@ $(document).ready(function(){
 		
 	})
 
-	$(".item-star").click(function(){
+	$(".pull-right").click(function(){
 
 		var $li = $(this).offsetParent();
-
+		console.log($li.data().titleid);
 		$.post('/title/'+$li.data().titleid,function(response){
 
 			$li.find('.item-count').text(response.count);
@@ -70,8 +70,8 @@ function makeTitleHtml(titleObj){
 
 	var titleHtml = '<li class="list-group-item" data-titleId="'+(titleObj.id ? titleObj.id : -1)+'">';
         titleHtml += '<span class="item-title">'+titleObj.text+'</span>';
-        titleHtml += '<div class="pull-right">';
-        titleHtml += '<span class="item-star" style="cursor:pointer">';
+        titleHtml += '<div class="pull-right" style="cursor:pointer">';
+        titleHtml += '<span class="item-star">';
         titleHtml += '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
         titleHtml += '</span>';
         titleHtml += '<span class="item-count">'+titleObj.count+'</span>';
