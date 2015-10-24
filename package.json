@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "bower": "^1.6.3",
     "ejs": "~0.8.4",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
@@ -25,7 +26,8 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "bower": "cd assets && ../node_modules/bower/bin/bower install",
+    "start": "npm run bower && node app.js"
   },
   "main": "app.js",
   "repository": {
